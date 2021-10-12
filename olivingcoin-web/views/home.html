@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<!--
+	Halcyonic by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Olivingcoin-home</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="public/css/main.css" />
+	<style> .container {font-weight: bolder;}</style>
+	<!--<style> section {overflow: hidden; text-overflow: ellipsis;  white-space: nowrap;}</style>-->
+	<script type="text/javascript" src="./script/rpc/home_rpc.js"></script>
+	<script type="text/javascript" src="./script/pagefunction/homefunction.js"></script>
+	<script>
+		getWalletInfo();
+		getBlockchainInfo();
+		//setInterval(getWalletInfo, 1000);
+
+	</script>
+	<style>
+		table {
+			width:100%; 
+			text-align: center;
+			word-break: break-all;
+		}
+	</style>
+</head>
+
+<body class="main">
+	{% set DEFAULT_COIN_UNIT = 'OVC' %}
+	<div id="page-wrapper">
+		<!-- Header -->
+		<section id="header">
+			{% include "menu.html" %}
+		</section>
+
+		<!-- Content -->
+		<section id="content">
+			<div class="container">
+				<div class="row">
+					<div class="col-5 col-12-medium">
+
+						<!-- Sidebar -->
+						<section>
+							<header>
+								<h2>잔액</h2>
+							</header>
+
+							<body>
+								<div id="printBalance">
+									사용가능: <span id='balance'></span> {{DEFAULT_COIN_UNIT}}<br>
+									미확정: <span id='unconfirmed_balance'></span> {{DEFAULT_COIN_UNIT}}<br>
+									사용 불가능: <span id='immature_balance'></span> {{DEFAULT_COIN_UNIT}}
+									<hr>
+									총액: <span id='total'></span> {{DEFAULT_COIN_UNIT}}
+								</div>
+							</body>
+						</section>
+
+						<section>
+							<header>
+								<h2>클라이언트 정보</h2>
+							</header>
+
+							<body>
+								<p id="text">
+									유저 에이전트: <span id='userAgent'></span><br>
+									네트워크 이름: <span id='networkName'></span><br>
+									피어 연결 수: <span id='connections'></span><br>
+									현재 블록 수: <span id='nblocks'></span><br>
+									<button onclick="btnGetBlockchainInfo()">블록체인 정보 자세히 보기</button>
+									<button onclick="btnGetWalletInfo()">지갑 정보 자세히 보기</button>
+									<button onclick="btnGetNetworkInfo()">네트워크 정보 자세히 보기</button>
+								</p>
+							</body>
+						</section>
+					</div>
+					<div class="col-7 col-12-medium imp-medium">
+
+						<!-- Main Content -->
+						<section>
+							<header>
+								<h2>최근 거래</h2>
+							</header>
+							<table id="homeTxTable" >
+								<thead>
+									<th>시간</th> <th>주소</th> <th>형식</th> <th>금액</th>
+								</thead>
+								<tbody id="tbody">
+									<script>
+										getHomeListTransactions("*", 5);
+									</script>
+								</tbody>
+							</table>
+						</section>
+
+						<section>
+							<header>
+								<h2>내 주소 목록</h2>
+							</header>
+							<p id=myAddr>
+							<div id=myAddrList></div>
+							<script>
+								getmyAddrList();
+							</script>
+							</p>
+						</section>
+
+						<section>
+							<header>
+								<h2>Two Column #2</h2>
+								<h3>Another generic two column layout</h3>
+							</header>
+							<select id="RPC_select">
+								<option value="getBlockchainInfo" selected="selected">getBlockchainInfo</option>
+								<option value="getWalletInfo">getWalletInfo</option>
+								<option value="listAddressGroupings">listAddressGroupings</option>
+								<option value="listTransactions">listTransactions</option>
+								<option value="getBalance">getBalance</option>
+								<option value="getNetworkInfo">getNetworkInfo</option>
+								<option value="listReceivedByAddress">listReceivedByAddress</option>
+
+							</select>
+							<input id="arg1"></input>
+							<input id="arg2"></input>
+							<button id="RPC_req_Button" onclick="getRPCAPI(
+													document.getElementById('arg1').value,
+													document.getElementById('arg2').value)"> 전송 </button>
+							<pre id='RPC_res'></pre>
+						</section>
+						<section>
+							<header>
+								<h2>Two Column #2</h2>
+								<h3>Another generic two column layout</h3>
+							</header>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam metus, congue
+								vel suscipit ut, dignissim non risus. Vestibulum ante est, fringilla nec placerat
+								eu, vestibulum vitae diam. Integer eget egestas eros. Duis enim erat, mollis quis
+								lacinia eget, blandit nec ipsum. Donec vitae turpis ipsum. Aliquam mauris libero,
+								sagittis in eleifend at, mattis imperdiet velit. Donec urna risus, rutrum molestie
+								varius ac, lacinia sit amet augue. Nam ultrices elementum eros.
+							</p>
+
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+
+		<!-- Footer -->
+
+
+		<!-- Copyright -->
+		<div id="copyright">
+			&copy; Untitled. All rights reserved. | Design: <a href="http://html5up.net">HTML5 UP</a>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="public/js/jquery.min.js"></script>
+	<script src="public/js/browser.min.js"></script>
+	<script src="public/js/breakpoints.min.js"></script>
+	<script src="public/js/util.js"></script>
+	<script src="public/js/main.js"></script>
+
+</body>
+
+</html>

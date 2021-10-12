@@ -1,0 +1,19 @@
+{% set menu = ['Home', 'Send', 'Receive', 'Transaction', 'Mining'] %}
+{% set link = ['home', 'send', 'receive', 'transaction', 'mining'] %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- Logo -->
+                <h1><a onclick="location.href='{{link[0]}}'" id="logo">Olivingcoin-core</a></h1>
+
+                <!-- Nav -->
+                <nav id="nav">
+                    {% for link in link %} 
+                    <a onclick="location.href='{{link}}'">{{menu[loop.index - 1]}}</a>
+                    {% endfor %}
+                </nav>
+            </div>
+        </div>
+    </div>

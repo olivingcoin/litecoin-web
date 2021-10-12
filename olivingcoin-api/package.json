@@ -1,0 +1,11 @@
+{
+  "name": "olivingcoin-api",
+  "version": "0.0.1",
+  "description": "Olivingcoin api Server",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app"
+  },
+  "author": "Pyeongtaek Univ. Blockchain Project Team",
+  "license": "ISC"
+}

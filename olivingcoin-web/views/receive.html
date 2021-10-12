@@ -1,0 +1,151 @@
+<html>
+
+<head>
+    <title> Olivingcoin-receive </title>
+    <link rel="stylesheet" href="public/css/main.css" />
+    <script type="text/javascript" src="./script/rpc/receive_rpc.js"></script>
+    <style>
+        table {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+    <script>
+        const getSendAddress = ((...args) => {
+            const POSTBody = getPOSTBody(args);
+            fetch(`http://${APIURL}/${POST}/getNewAddress`, POSTBody)
+                .then((res) => res.json())
+                .then((text) => {
+                    console.log(text);
+                    listReceivedByAddress('0', true)
+                })
+                .catch((error) => console.error(error));
+        })
+
+        const onChangeAmount = ((obj, address) => {
+            const url = 'https://chart.apis.google.com/chart?'
+            const params = {
+                "cht": "qr",
+                "chs": "150x150",
+                "chl": address,
+            }
+
+            const coinParams = new Object;
+
+            const urlName = document.getElementById("urlName")
+            const qrImage = document.getElementById("qrImage")
+            const message = document.getElementById("message")
+
+            const convertNumber = parseFloat(obj.value).toFixed(8);
+
+            if (convertNumber != "" && !isNaN(convertNumber)) {
+                obj.value = convertNumber;
+                coinParams.amount = convertNumber;
+            }
+
+            if (message.textContent != "") {
+                coinParams.message = message.textContent;
+            }
+
+            const defaultQuery = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+            const coinParamsQuery = Object.keys(coinParams).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(coinParams[k])).join('&');
+            
+            let query; 
+
+            if (coinParamsQuery == "") {
+                query = defaultQuery;
+                urlName.textContent = address;
+            }
+            else {
+                query = `${defaultQuery}?${coinParamsQuery}`
+                urlName.textContent = `${address}?${coinParamsQuery}`;
+            }
+
+            qrImage.setAttribute('src', url + query);
+            
+        })
+    </script>
+</head>
+
+<body class="main">
+    {% set DEFAULT_COIN_UNIT = 'OVC' %}
+    <div id="page-wrapper">
+        <!-- Header -->
+        <section id="header">
+            {% include "menu.html" %}
+        </section>
+
+        <!-- Content -->
+        <section id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-12-medium">
+                        <section>
+                            <header>
+                                <h2>수신 주소</h2>
+                            </header>
+
+                            <body>
+                                <button onclick="getSendAddress()">수신주소 생성</button>
+                                <table id="receivedByAddressTable">
+                                    <thead>
+                                        <th>주소</th>
+                                        <th>금액</th>
+                                        <th>검증횟수</th>
+                                        <th>QR Code</th>
+                                    </thead>
+                                    <tbody id="receivedByAddressTbody">
+                                        <script>
+                                            listReceivedByAddress('0', true);
+                                        </script>
+                                    </tbody>
+                                </table>
+                            </body>
+                        </section>
+                        <section>
+                            <div id="page-wrapper">
+                                <div id="countTx"></div>
+                                <table id="receiveTable">
+                                    <thead>
+                                        <th>주소</th>
+                                        <th>형식</th>
+                                        <th>금액</th>
+                                        <th>검증횟수</th>
+                                        <th>트랜잭션 아이디</th>
+                                    </thead>
+                                    <tbody id="receiveTbody">
+                                        <script>
+                                            getListReceiveTransactions('*', 5000);
+                                        </script>
+                                    </tbody>
+                                </table>
+                        </section>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Footer -->
+
+
+        <!-- Copyright -->
+        <div id="copyright">
+            &copy; Untitled. All rights reserved. | Design: <a href="http://html5up.net">HTML5 UP</a>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="public/js/jquery.min.js"></script>
+    <script src="public/js/browser.min.js"></script>
+    <script src="public/js/breakpoints.min.js"></script>
+    <script src="public/js/util.js"></script>
+    <script src="public/js/main.js"></script>
+
+</body>
+
+</html>
