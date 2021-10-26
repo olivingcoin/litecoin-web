@@ -1,4 +1,4 @@
-document.write(`<script type='text/javascript' src='./script/rpcparams.js'></script>`); 
+document.write(`<script type='text/javascript' src='./script/rpcparams.js'></script>`);
 document.write(`<script type='text/javascript' src='./script/utilfunction.js'></script>`);
 
 function btnOnclicked(address) {
@@ -7,12 +7,42 @@ function btnOnclicked(address) {
         "cht": "qr",
         "chs": "150x150",
         "chl": `olivingcoin:${address}`,
-    }; 
-    
+    };
+
     let url = 'https://chart.apis.google.com/chart?';
 
     printQREvent('QR Code', url, params);
 }
+
+/*
+- 외부에서 이 함수를 호출해서 qrInfo객체의 qrImgSrc, address 값을 사용하면 됨
+
+*/
+const getReceivingQRInfo = ((price) => {
+    const params = {
+        "cht": "qr",
+        "chs": "150x150",
+        "chl": "abcd1234",
+        // "chl": `${address}`,
+    };
+
+    let url = 'https://chart.apis.google.com/chart?';
+
+    // 테스트 창 띄우기
+    printReadOnlyQREvent('Receiving QR', url, params, price);
+
+    const qrInfo = new Object;
+    const coinParams = new Object;
+    coinParams.amount = price;
+
+    const query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+    const coinParamsQuery = Object.keys(coinParams).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(coinParams[k])).join('&');
+    qrInfo.qrImgSrc = url + query + "?" + coinParamsQuery;
+    qrInfo.address = params.chl;
+
+    return qrInfo;
+});
+
 
 const listReceivedByAddress = ((...args) => {
     const POSTBody = getPOSTBody(args);
@@ -71,9 +101,9 @@ const listReceivedByAddress = ((...args) => {
 });
 
 const getListReceiveTransactions = ((...args) => {
-        const POSTBody = getPOSTBody(args);
-    
-        fetch(`http://${APIURL}/${POST}/listTransactions`, POSTBody)
+    const POSTBody = getPOSTBody(args);
+
+    fetch(`http://${APIURL}/${POST}/listTransactions`, POSTBody)
         .then((res) => res.json())
         .then((text) => {
             let numberOfSendTx = 0; //category가 send에 해당하는 개수 측정
@@ -121,7 +151,7 @@ const getListReceiveTransactions = ((...args) => {
                 }
             }
 
-            document.querySelector('#countTx').textContent 
+            document.querySelector('#countTx').textContent
                 = `${numberOfTx} 개 중 ${numberOfSendTx}개 조회`;
         })
         .catch((error) => console.error(error));

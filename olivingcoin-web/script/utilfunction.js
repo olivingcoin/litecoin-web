@@ -69,11 +69,11 @@ const infoEvent = ((title, json) => {
     infoTable.appendChild(tbody);
     infoTable.style = "text-align: left; font-weight: bolder"
 
-    for(let i = 0; i < keys.length; i++) {
+    for (let i = 0; i < keys.length; i++) {
         const tr = document.createElement("tr");
-        tr.id = "tr" + i; 
+        tr.id = "tr" + i;
         const key = document.createElement("td");
-        const value = document.createElement("td");      
+        const value = document.createElement("td");
         key.textContent = keys[i];
         value.textContent = values[i];
         tr.appendChild(key);
@@ -84,7 +84,7 @@ const infoEvent = ((title, json) => {
         title: title,
         content: infoTable,
     })
-    return infoEvent; 
+    return infoEvent;
 });
 
 const infoPreEvent = ((title, text) => {
@@ -95,12 +95,12 @@ const infoPreEvent = ((title, text) => {
         title: title,
         content: preText,
     })
-    return infoPreEvent; 
+    return infoPreEvent;
 });
 
 const printQREvent = ((title, url, params) => {
-    const query = Object.keys(params) .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])) .join('&'); 
-    
+    const query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+
     const contents = document.createElement("table");
     const table = document.createElement("table");
     const tr1 = document.createElement("tr");
@@ -142,8 +142,101 @@ const printQREvent = ((title, url, params) => {
         title: title,
         content: contents,
     })
-    return imgEvent; 
+    return imgEvent;
+
 });
+
+const printReadOnlyQREvent = ((title, url, params, price) => {
+    const query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+    const address = url + query;
+
+    const contents = document.createElement("table");
+    const table = document.createElement("table");
+    const tr1 = document.createElement("tr");
+    const td11 = document.createElement("td");
+    const td12 = document.createElement("td");
+    const tr2 = document.createElement("tr");
+    const td21 = document.createElement("td");
+    const td22 = document.createElement("td");
+    const amount = document.createElement("input");
+    const qrImage = document.createElement("img");
+    const urlName = document.createElement("div");
+    amount.id = 'amount';
+    urlName.id = 'urlName';
+    qrImage.id = 'qrImage';
+
+    amount.setAttribute('onchange', `onChangeAmount(this, '${params.chl}')`);
+    amount.setAttribute("value", price);
+    amount.setAttribute("readonly", true);
+
+    td11.textContent = '요청 금액'
+    td12.appendChild(amount)
+
+    qrImage.setAttribute('src', address);
+    urlName.textContent = params.chl;
+
+    contents.appendChild(table);
+    table.appendChild(tr1);
+    tr1.appendChild(td11);
+    tr1.appendChild(td12);
+    table.appendChild(tr2);
+    tr2.appendChild(td21);
+    tr2.appendChild(td22);
+    contents.appendChild(qrImage);
+    contents.appendChild(urlName);
+
+    // recreate QR
+    recreateQR(price, address, qrImage, urlName);
+
+    const imgEvent = swal({
+        title: title,
+        content: contents,
+    })
+    return imgEvent;
+
+    
+});
+
+const recreateQR = ((price, address, qrImage, urlName) => {
+    const url = 'https://chart.apis.google.com/chart?'
+    const params = {
+        "cht": "qr",
+        "chs": "150x150",
+        "chl": address,
+    }
+
+    const coinParams = new Object;
+
+    // const message = document.getElementById("message")
+
+    const convertNumber = parseFloat(price).toFixed(8);
+
+    if (convertNumber != "" && !isNaN(convertNumber)) {
+        price = convertNumber;
+        coinParams.amount = convertNumber;
+    }
+
+    // if (message.textContent != "") {
+    //     coinParams.message = message.textContent;
+    // }
+
+    const defaultQuery = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+    const coinParamsQuery = Object.keys(coinParams).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(coinParams[k])).join('&');
+
+    let query;
+
+    if (coinParamsQuery == "") {
+        query = defaultQuery;
+        urlName.textContent = address;
+    }
+    else {
+        query = `${defaultQuery}?${coinParamsQuery}`
+        // urlName.textContent = `${address}?${coinParamsQuery}`;
+    }
+    console.log("log: " + url + query);
+    qrImage.setAttribute('src', url + query);
+
+})
 
 const alertEvent = ((title, text, icon) => {
     const alertEvent = swal({
@@ -151,7 +244,7 @@ const alertEvent = ((title, text, icon) => {
         text: text,
         icon: icon, //"info,success,warning,error" 중 택1
     })
-    return alertEvent; 
+    return alertEvent;
 });
 
 const getKorTxCategoryName = ((category, confirmations) => {
@@ -208,5 +301,5 @@ const confirmEvent = ((title, text, icon) => {
         icon: icon, //"info,success,warning,error" 중 택1
         buttons: ["NO", "YES"]
     })
-    return confirmEvent; 
+    return confirmEvent;
 });
