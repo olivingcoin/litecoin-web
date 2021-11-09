@@ -16,10 +16,10 @@
 	</noscript>
 	<script lang="javascript">
 		function QROpen() {
-		window.open("PayQR.html", "결제창","width=420, height=500, left=100,top =100, scrollbar=no, location=no");
-	}
+			window.open("PayQR.html", "결제창", "width=420, height=500, left=100,top =100, scrollbar=no, location=no");
+		}
 	</script>
-	
+
 </head>
 
 <body class="is-preload">
@@ -28,7 +28,7 @@
 
 		<!-- Header -->
 		<header id="header">
-			
+
 			<div id="banner">
 				<span class="image main"><img src="카페이미지/카페배너.jpg" alt="" /></span><span class="title"></span>
 			</div>
@@ -43,16 +43,16 @@
 				<!-- Nav -->
 				<nav>
 					<ul>
-						<li><a href="menu_coffee.html">COFFEE</a></li>
-						<li><a href="menu_tea&ade.html">NON-COFFEE</a></li>
-						<li><a href="generic.html">TEA & ADE</a></li>
-						<li><a href="elements.html">Side-Menu</a></li>
+						<li><a onclick="changeItems('coffee')">COFFEE</a></li>
+						<li><a onclick="changeItems('noneCoffee')">NON-COFFEE</a></li>
+						<li><a onclick="changeItems('teaAndAde')">TEA & ADE</a></li>
+						<li><a onclick="changeItems('sidemenu')">Side-Menu</a></li>
 					</ul>
 				</nav>
 
 
-
-				<section class="tiles">
+				<!-- 메뉴: COFFEE -->
+				<section class="tiles" id="coffee">
 					<article class="style1">
 						<span class="image">
 							<img src="카페이미지/아메리카노 hot.jpg" alt="" />
@@ -119,7 +119,29 @@
 							</div>
 						</a>
 					</article>
+				</section>
 
+				<!-- 메뉴: NONE - COFFEE -->
+				<section class="tiles" id="noneCoffee">
+				</section>
+
+				<!-- 메뉴: TEA & ADE -->
+				<section class="tiles" id="teaAndAde">
+					<article class="style1">
+						<span class="image">
+							<img src="카페이미지/자몽에이드.jpg" alt="" />
+						</span>
+						<a onclick="addItemToOrderList('자몽에이드', 2000)">
+							<h2>자몽에이드</h2>
+							<div class="content">
+								<p>￦2,000</p>
+							</div>
+						</a>
+					</article>
+				</section>
+
+				<!-- 메뉴: SIDEMENU -->
+				<section class="tiles" id="sidemenu">
 				</section>
 			</div>
 		</div>
@@ -137,34 +159,35 @@
 					</tr>
 				</thead>
 			</table>
-			
+
 
 		</section>
 
 		<!--pop up-->
-        <div id="QRpopup">
-            <div id = "QRmenu">
-                <p> qr이미지 넣기</p>>
-                <div class = "exit">결제완료</div>
-             </div>
-        </div>
+		<div id="QRpopup">
+			<div id="QRmenu">
+				<p> qr이미지 넣기</p>>
+				<div class="exit">결제완료</div>
+			</div>
+		</div>
 
 		<!-- 결제방법 -->
 		<section>
 
 			<ul class="actions fit">
-				<li><input type ="button" value= "뒤로가기" onclick="location.href='cafe_home.html'" class="button primary large"/></li>
-				<li><input type="button" value="결제하기" onclick="QROpen();" class="button primary large"/></li>
+				<li><input type="button" value="뒤로가기" onclick="location.href='cafe_home.html'"
+						class="button primary large" /></li>
+				<li><input type="button" value="결제하기" onclick="QROpen();" class="button primary large" /></li>
 			</ul>
 		</section>
-		
+
 
 		<!-- Footer -->
 		<footer id="footer">
 			<div class="inner">
-			
 
-				
+
+
 			</div>
 		</footer>
 
@@ -178,6 +201,7 @@
 	<script src="assets/js/main.js"></script>
 	<script src="QR.js"></script>
 	<script src="utils.js"></script>
+	<script src="menuChange.js"></script>
 
 </body>
 
