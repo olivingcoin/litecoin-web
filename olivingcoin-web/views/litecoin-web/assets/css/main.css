@@ -1856,8 +1856,8 @@ input, select, textarea {
 			}
 
 			.icon.style2:hover {
-				color: #f2849e;
-				border-color: #f2849e;
+				
+				background-color: #f2849e;
 			}
 
 			.icon.style2:active {
