@@ -14,6 +14,12 @@
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
+	<script lang="javascript">
+		function QROpen() {
+		window.open("PayQR.html", "결제창","width=420, height=500, left=100,top =100, scrollbars=no, location=no");
+	}
+	</script>
+	
 </head>
 
 <body class="is-preload">
@@ -22,13 +28,7 @@
 
 		<!-- Header -->
 		<header id="header">
-			<div class="inner">
-
-				<!-- Logo -->
-				<a href="home.html" class="logo">
-					<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Phantom</span>
-				</a>
-			</div>
+			
 			<div id="banner">
 				<span class="image main"><img src="카페이미지/카페배너.jpg" alt="" /></span><span class="title"></span>
 			</div>
@@ -49,6 +49,10 @@
 						<li><a href="elements.html">Side-Menu</a></li>
 					</ul>
 				</nav>
+
+
+
+
 				<!-- 
 				<tbody>
 					<tr>
@@ -58,12 +62,22 @@
 					</tr>
 				</tbody>
 					-->
+
+
+
+
+
+
+
+
+
+
 				<section class="tiles">
 					<article class="style1">
 						<span class="image">
 							<img src="카페이미지/아메리카노 hot.jpg" alt="" />
 						</span>
-						<a onclick="addItemToOrderList('아메리카노', 1)">
+						<a onclick="addItemToOrderList('아메리카노', 3500)">
 							<h2>아메리카노</h2>
 							<div class="content">
 								<p>￦3,500</p>
@@ -74,7 +88,7 @@
 						<span class="image">
 							<img src="카페이미지/카푸치노.jpg" alt="" />
 						</span>
-						<a onclick="addItemToOrderList('카푸치노', 2)">
+						<a onclick="addItemToOrderList('카푸치노', 4500)">
 							<h2>카푸치노</h2>
 							<div class="content">
 								<p>￦4,500</p>
@@ -85,7 +99,7 @@
 						<span class="image">
 							<img src="카페이미지/캬라멜마끼야또 hot.jpg" alt="" />
 						</span>
-						<a onclick="addItemToOrderList('캬라멜마끼야또', 3)">
+						<a onclick="addItemToOrderList('캬라멜마끼야또', 5000)">
 							<h2>카라멜마끼야또</h2>
 							<div class="content">
 								<p>￦5000</p>
@@ -94,10 +108,32 @@
 					</article>
 					<article class="style4">
 						<span class="image">
-							<img src="카페이미지/핫초코.jpg" alt="" />
+							<img src="카페이미지/바닐라라떼.jpg" alt="" />
 						</span>
-						<a onclick="addItemToOrderList('핫초코', 4)">
-							<h2>핫초코</h2>
+						<a onclick="addItemToOrderList('바닐라라떼', 5000)">
+							<h2>바닐라라떼</h2>
+							<div class="content">
+								<p>￦5000</p>
+							</div>
+						</a>
+					</article>
+					<article class="style5">
+						<span class="image">
+							<img src="카페이미지/라떼 hot.jpg" alt="" />
+						</span>
+						<a onclick="addItemToOrderList('라떼', 4000)">
+							<h2>라떼</h2>
+							<div class="content">
+								<p>￦4000</p>
+							</div>
+						</a>
+					</article>
+					<article class="style6">
+						<span class="image">
+							<img src="카페이미지/아포가토.jpg" alt="" />
+						</span>
+						<a onclick="addItemToOrderList('아포가토', 5000)">
+							<h2>아포가토</h2>
 							<div class="content">
 								<p>￦5000</p>
 							</div>
@@ -128,55 +164,16 @@
 		<section>
 
 			<ul class="actions">
-				<li><a href="#" class="button large">뒤로가기</a></li>
-				<li><a href="#" class="button large">결제하기</a></li>
+				<li><a href="cafe_home.html" class="button large">뒤로가기</a></li>
+				<li><input type="button" value="결제하기" onclick="QROpen();" class="button large"/></li>
 			</ul>
 		</section>
 		<!-- Footer -->
 		<footer id="footer">
 			<div class="inner">
-				<section>
-					<h2>Get in touch</h2>
-					<form method="post" action="#">
-						<div class="fields">
-							<div class="field half">
-								<input type="text" name="name" id="name" placeholder="Name" />
-							</div>
-							<div class="field half">
-								<input type="email" name="email" id="email" placeholder="Email" />
-							</div>
-							<div class="field">
-								<textarea name="message" id="message" placeholder="Message"></textarea>
-							</div>
-						</div>
-						<ul class="actions">
-							<li><input type="submit" value="Send" class="primary" /></li>
-						</ul>
-					</form>
-				</section>
+			
 
-
-				<section>
-					<h2>Follow</h2>
-					<ul class="icons">
-						<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a>
-						</li>
-						<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a>
-						</li>
-						<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a>
-						</li>
-						<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a>
-						</li>
-						<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
-						<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
-						<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
-						<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-				</section>
-				<ul class="copyright">
-					<li>&copy; Untitled. All rights reserved</li>
-					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-				</ul>
+				
 			</div>
 		</footer>
 

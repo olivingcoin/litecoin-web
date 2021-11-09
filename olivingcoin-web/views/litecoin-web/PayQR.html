@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>PayQR </title>
+        <script language="javascript">
+            function moveClose() {
+              opener.location.href="Pay_success.html";
+              self.close();
+            }
+            </script>
+    </head>
+    <body>
+        
+        <img src="카페이미지/그린티라떼.jpg">
+        <map name="QR" id="QR">
+            <area shape="rect" coords="좌표위치" href="#" alt="close" onclick="window.close();">
+        </map>
+
+        <input type="button" value="결제완료" onclick="moveClose();" />
+        </body>
+
+</html>
