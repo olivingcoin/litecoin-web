@@ -1856,8 +1856,8 @@ input, select, textarea {
 			}
 
 			.icon.style2:hover {
-				
-				background-color: #f2849e;
+				color: #f2849e;
+				border-color: #f2849e;
 			}
 
 			.icon.style2:active {
@@ -2572,7 +2572,7 @@ input, select, textarea {
 		-webkit-flex-wrap: wrap;
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
-		postiion: relative;
+		position: relative;
 		margin: -2.5em 0 0 -2.5em;
 	}
 
@@ -2684,7 +2684,7 @@ input, select, textarea {
 				.tiles article > a:hover {
 					color: #ffffff !important;
 				}
-
+		
 				.tiles article > a h2 {
 					margin: 0;
 				}
@@ -2737,7 +2737,7 @@ input, select, textarea {
 			}
 
 				body:not(.is-touch) .tiles article:hover > .image:before {
-					background-color: #333333;
+					background-color:#585858;
 					opacity: 0.35;
 				}
 
