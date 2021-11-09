@@ -169,7 +169,7 @@ const printReadOnlyQREvent = ((title, url, params, price) => {
     amount.setAttribute("value", price);
     amount.setAttribute("readonly", true);
 
-    td11.textContent = '요청 금액'
+    td11.textContent = '최종 금액'
     td12.appendChild(amount)
 
     qrImage.setAttribute('src', address);

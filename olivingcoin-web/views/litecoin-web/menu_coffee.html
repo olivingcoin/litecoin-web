@@ -177,7 +177,7 @@
 			<ul class="actions fit">
 				<li><input type="button" value="뒤로가기" onclick="location.href='cafe_home.html'"
 						class="button primary large" /></li>
-				<li><input type="button" value="결제하기" onclick="QROpen();" class="button primary large" /></li>
+				<li><input type="button" value="결제하기" onclick="getReceivingQRInfo(getTotalPrice());" class="button primary large" /></li>
 			</ul>
 		</section>
 
@@ -202,6 +202,7 @@
 	<script src="QR.js"></script>
 	<script src="utils.js"></script>
 	<script src="menuChange.js"></script>
+	<script src="qrUtils.js"></script>
 
 </body>
 
