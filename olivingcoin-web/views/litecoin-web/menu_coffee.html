@@ -16,7 +16,7 @@
 	</noscript>
 	<script lang="javascript">
 		function QROpen() {
-		window.open("PayQR.html", "결제창","width=420, height=500, left=100,top =100, scrollbars=no, location=no");
+		window.open("PayQR.html", "결제창","width=420, height=500, left=100,top =100, scrollbar=no, location=no");
 	}
 	</script>
 	
@@ -44,31 +44,11 @@
 				<nav>
 					<ul>
 						<li><a href="menu_coffee.html">COFFEE</a></li>
-						<li><a href="menu_tea&ade.html">TEA & ADE</a></li>
-						<li><a href="generic.html">Smoothies</a></li>
+						<li><a href="menu_tea&ade.html">NON-COFFEE</a></li>
+						<li><a href="generic.html">TEA & ADE</a></li>
 						<li><a href="elements.html">Side-Menu</a></li>
 					</ul>
 				</nav>
-
-
-
-
-				<!-- 
-				<tbody>
-					<tr>
-						<td>상세내역/사이즈</td>
-						<td>상세수량</td>
-						<td>-</td>
-					</tr>
-				</tbody>
-					-->
-
-
-
-
-
-
-
 
 
 
@@ -160,14 +140,25 @@
 			
 
 		</section>
+
+		<!--pop up-->
+        <div id="QRpopup">
+            <div id = "QRmenu">
+                <p> qr이미지 넣기</p>>
+                <div class = "exit">결제완료</div>
+             </div>
+        </div>
+
 		<!-- 결제방법 -->
 		<section>
 
-			<ul class="actions">
-				<li><a href="cafe_home.html" class="button large">뒤로가기</a></li>
-				<li><input type="button" value="결제하기" onclick="QROpen();" class="button large"/></li>
+			<ul class="actions fit">
+				<li><input type ="button" value= "뒤로가기" onclick="location.href='cafe_home.html'" class="button primary large"/></li>
+				<li><input type="button" value="결제하기" onclick="QROpen();" class="button primary large"/></li>
 			</ul>
 		</section>
+		
+
 		<!-- Footer -->
 		<footer id="footer">
 			<div class="inner">
@@ -185,6 +176,7 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script src="QR.js"></script>
 	<script src="utils.js"></script>
 
 </body>

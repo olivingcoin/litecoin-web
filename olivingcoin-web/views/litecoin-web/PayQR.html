@@ -3,19 +3,29 @@
         <title>PayQR </title>
         <script language="javascript">
             function moveClose() {
-              opener.location.href="Pay_success.html";
+              opener.location.href="cafe_home.html";
               self.close();
             }
             </script>
     </head>
     <body>
-        
-        <img src="카페이미지/그린티라떼.jpg">
-        <map name="QR" id="QR">
-            <area shape="rect" coords="좌표위치" href="#" alt="close" onclick="window.close();">
-        </map>
-
+        <!--pop up-->
+        <div id="QRpopup">
+            <div id = "QRmenu">
+                <p> qr이미지 넣기</p>>
+                
+             </div>
+        </div>
         <input type="button" value="결제완료" onclick="moveClose();" />
+
+
+
+
+         <script src="assets/js/jquery.min.js"></script>
+         <script src="assets/js/browser.min.js"></script>
+         <script src="assets/js/breakpoints.min.js"></script>
+         <script src="assets/js/util.js"></script>
+         <script src="assets/js/main.js"></script>
         </body>
 
 </html>

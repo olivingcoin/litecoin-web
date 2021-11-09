@@ -3156,42 +3156,6 @@ input, select, textarea {
 
 		}
 
-/*팝업창*/
-	#QRpopup {
-    	display: none; /*숨기기*/
-    	position: fixed;
-    	width: 100%;
-    	height: 100%;
-   		background: rgba(0,0,0,0.9);
-}
-
-#QRmenu {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    width: 300px;
-    height: 200px;
-    text-align: center;
-    background: #fff;
-}
-
-#QRmenu p {
-    margin-top: 80px;
-}
-
-.exit {
-    position: absolute;
-    left: 50%;
-    bottom: 10px;
-    transform: translate(-50%,0);
-    width: 60px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    background: #007AAE;
-    cursor: pointer;
-}
 /* Footer */
 
 	#footer {
